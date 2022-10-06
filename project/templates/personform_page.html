@@ -1,0 +1,132 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="container mb-5">
+        <h1 class=" text-center" > STUDENT FORM</h1>
+        <div class="row">
+            <div class="col-sm-8">
+                <form action="" method="post" enctype="multipart/form-data" class="shadow p-5">
+                   {% csrf_token %}
+                    {% for fm in personform %}
+                      <div class="form-group mb-3">
+                          {{fm.label_tag}} {{fm}} <small class="text_danger"></small>
+                      </div>
+                    {% endfor %}
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <a href="{% url 'logout' %}">logout</a>
+
+                </form>
+            </div>
+            <div class="col-sm-4">
+                <h5><u>AbC SCHOOL</u></h5><br>
+
+                <p>Where does it come from?
+                 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                 Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+                 and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
+                 Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                 The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section </p><br>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type
+                    specimen book. It has survived not only five centuries, but also the leap
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#id_job').empty();
+
+            var csStrings = JSON.parse('{{ json_cs_strings | escapejs }}');
+            var bStrings = JSON.parse('{{ json_b_strings | escapejs }}');
+<!--            var biStrings = JSON.parse('{{ json_bi_strings | escapejs }}');-->
+
+
+            $('#id_subject').on('change', function(){
+
+                var subject = $('#id_subject').val();
+
+                if(subject == 'Computer Science'){
+
+                    $('#id_job').empty();
+
+                    var length = csStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                        job = csStrings[i];
+                        $('#id_job').append(
+
+                            `
+                            <option value="${job}">
+                                ${job}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+
+                else if(subject == 'Business'){
+
+                    $('#id_job').empty();
+
+                    var length = bStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                        job = bStrings[i];
+                        $('#id_job').append(
+
+                            `
+                            <option value="${job}">
+                                ${job}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+                else{
+
+                    $('#id_job').empty();
+
+                }
+
+            });
+
+        });
+    </script>
+
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+
+
+
+</body>
+</html>

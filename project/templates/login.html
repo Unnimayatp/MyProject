@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+body{
+     background:lightblue;
+     text-align: center
+
+}
+
+.login-form{
+      max-width:350px;
+      margin:auto;
+      border-radius:5px;
+
+      padding:20;
+}
+input[type="text"], select{
+     width:100%;
+     padding:12px 20px;
+     margin:8px 0;
+     border:1px solid #ccc;
+     display:inline-block;
+     border-radius:4px;
+}
+input[type="submit"]{
+  background-color:white /* Green */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  color: Black;
+  padding:10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+
+}
+
+input[type=submit]:hover:{
+     background:#000;
+}
+
+input[type="password"]{
+
+      width:100%;
+     padding:12px 20px;
+     display:inline-block;
+     margin:8px 0;
+     border:1px solid #ccc;
+     border-radius:4px;
+
+}
+
+
+
+</style>
+
+<body >
+<h2 >  LOGIN </h2>
+<div class="login-form">
+
+    <h1></h1>
+<form action='login' method="post" style="text-align:center;">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label><h3>Username</h3></label></td>
+            <td><input type="text" name="username" ></td>
+        </tr>
+        <tr>
+            <td><label> <h3>Password</h3></label></td>
+            <td><input type="password" name="password" ></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+            <td colspan="2" style="text-align:center"><h1><input type="submit"></h1></td>
+        </tr>
+    </table>
+
+    <div>
+
+         <a href="register">Register here </a>
+    </div>
+
+
+
+
+</form>
+{% for msg in messages %}
+  {{msg}}
+  {% endfor %}
+</div>
+</body>
+</html>

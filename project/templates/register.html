@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+     background:lightblue;
+
+}
+.register{
+      max-width:350px;
+      margin:auto;
+      border-radius:5px;
+
+      padding:20px;
+}
+input[type="text"], select{
+     width:100%;
+     padding:12px 20px;
+     display:inline-block;
+     margin:8px 0;
+     border:1px solid #ccc;
+     border-radius:4px;
+}
+input[type="submit"]{
+  background-color:white /* Green */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  color: Black;
+  padding:10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+
+}
+input[type=submit]:hover:{
+     background:#000;
+}
+
+input[type="email"]{
+      width:100%;
+     padding:12px 20px;
+     display:inline-block;
+     margin:8px 0;
+     border:1px solid #ccc;
+     border-radius:4px;
+
+
+}
+
+input[type="password"]{
+
+      width:100%;
+     padding:12px 20px;
+     display:inline-block;
+     margin:8px 0;
+     border:1px solid #ccc;
+     border-radius:4px;
+
+}
+
+input[type="cnpassword"]{
+
+      width:100%;
+     padding:12px 20px;
+     display:inline-block;
+     margin:8px 0;
+     border:1px solid #ccc;
+     border-radius:4px;
+
+
+}
+</style>
+
+
+
+
+
+</head>
+<body>
+
+<div class="register">
+<h2>Registration</h2>
+<form action="register" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter Your Username " ><br>
+    <input type="text" name="first_name" placeholder="Enter Your First Name"><br>
+    <input type="text" name="last_name" placeholder="Enter Your Last Name" ><br>
+    <input type="email" name="email" placeholder="Enter Your Email Address" ><br>
+    <input type="password" name="password" placeholder="Enter Your Password" ><br>
+    <input type="cnpassword" name="cnpassword" placeholder="Confirm Your Password"><br>
+    <div class="text-center" >
+      <input type="submit">
+    </div>
+ <div class="container signin" >
+     <p>Already have an account? <a href="login">login </a>.</p>
+ </div>
+
+</form>
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+</div>
+</body>
+</html>
